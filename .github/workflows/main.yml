@@ -1,9 +1,9 @@
 name: Pigeon App Bot
 
 on:
-  workflow_dispatch:
-  # schedule:
-  #   - cron: '30 23 * * *' # Run every day at 5 AM IST (11:30 PM UTC)
+  # workflow_dispatch:
+  schedule:
+    - cron: '30 23 * * *' # Run every day at 5 AM IST (11:30 PM UTC)
 
 jobs:
   build:

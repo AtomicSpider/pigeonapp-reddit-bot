@@ -8,9 +8,9 @@ import pytz
 FOOTER = """
 
 -------------------------------------------------------------
-This is an automated bot created by u/pigeonapp
+This post is created by an automated bot from: u/pigeonapp
+
 Please reach out for any greviences/suggestions :)
--------------------------------------------------------------
 """
 
 
