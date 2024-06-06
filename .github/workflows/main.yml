@@ -16,11 +16,10 @@ jobs:
     - name: Build Docker image
       run: docker build -t pigeonapp-bot .
 
-    - name: Set up secrets
-      env:
-        REDDIT_CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
-        REDDIT_CLIENT_SECRET: ${{ secrets.REDDIT_CLIENT_SECRET }}
-        ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-
     - name: Run Docker container
-      run: docker run -e REDDIT_CLIENT_ID=$REDDIT_CLIENT_ID -e REDDIT_CLIENT_SECRET=$REDDIT_CLIENT_SECRET -e ANTHROPIC_API_KEY=$ANTHROPIC_API_KEY pigeonapp-bot
+      run: |
+        docker run \
+          -e REDDIT_CLIENT_ID=${{ secrets.REDDIT_CLIENT_ID }} \
+          -e REDDIT_CLIENT_SECRET=${{ secrets.REDDIT_CLIENT_SECRET }} \
+          -e ANTHROPIC_API_KEY=${{ secrets.ANTHROPIC_API_KEY }} \
+          pigeonapp-bot
