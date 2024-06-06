@@ -12,9 +12,9 @@ def summarize(posts):
         messages=[
             {
                 "role": "user",
-                "content": f"You are a Subreddit post summary assistant. Here are the top posts of past 24 hours. Please provide a summary. \n\n {posts}",
+                "content": f"You are a Subreddit summary assistant. You will be provided with the top posts of subreddit. Please create a summary of the collective posts and also attach relevant urls. \n\n Posts: \n\n {posts}",
             }
         ],
-        model="claude-3-opus-20240229",
+        model="claude-instant-1.2",
     )
-    return str(message.content)
+    return message.content[0].text
