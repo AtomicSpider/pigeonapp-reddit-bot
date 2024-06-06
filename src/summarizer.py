@@ -10,7 +10,7 @@ You are a Subreddit summary assistant. You will be provided with the top posts o
 Your response should always be like this:
 
 Summary:
-<Summary in 2-3 paragraphs> 
+<Summary in bullet points> 
 
 Refrences: 
 <Post URLs>
@@ -25,7 +25,8 @@ def summarize(posts):
             {
                 "role": "user",
                 "content": posts,
-            }
+            },
+            {"role": "assistant", "content": "Summary:"},
         ],
         model="claude-instant-1.2",
     )
