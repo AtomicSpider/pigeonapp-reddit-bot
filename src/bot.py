@@ -1,6 +1,8 @@
 import praw
 import summarizer
 import os
+from datetime import datetime, timedelta
+import pytz
 
 
 FOOTER = """
@@ -25,6 +27,19 @@ def fetch_posts(reddit, subreddit_name):
     return combined_text
 
 
+def get_yesterday_ist():
+    # Define IST timezone
+    ist = pytz.timezone("Asia/Kolkata")
+
+    # Get current time in UTC and convert to IST
+    now_utc = datetime.now(pytz.utc)
+    now_ist = now_utc.astimezone(ist)
+
+    # Calculate yesterday's date
+    yesterday_ist = now_ist - timedelta(days=1)
+    return yesterday_ist.strftime("%Y-%m-%d")
+
+
 def main():
     # Initialize Reddit instance
     reddit = praw.Reddit(
@@ -46,11 +61,14 @@ def main():
         post_selftext = f"{summary}{FOOTER}"
 
         print(post_selftext)
+
         # Post the summary to the subreddit
-        # reddit.subreddit(subreddit_name).submit(
-        #     title=f"Summary of top posts from the last 24 hours in {subreddit_name}",
-        #     selftext=summary,
-        # )
+        _post = reddit.subreddit("test").submit(
+            title=f"[Daily Digest] {get_yesterday_ist()}: Top Posts from {subreddit_name}",
+            selftext=post_selftext,
+        )
+
+        print(f"Submitted to {_post.permalink}")
 
 
 if __name__ == "__main__":
