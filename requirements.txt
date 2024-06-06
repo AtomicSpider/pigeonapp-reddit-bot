@@ -1,0 +1,2 @@
+praw==7.7.1
+anthropic==0.28.0
