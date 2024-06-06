@@ -16,10 +16,11 @@ Refrences:
 <Post URLs>
 """
 
+
 def summarize(posts):
     message = client.messages.create(
         max_tokens=1024,
-        system=ASSISTANT_DIRECTIVE
+        system=ASSISTANT_DIRECTIVE,
         messages=[
             {
                 "role": "user",
