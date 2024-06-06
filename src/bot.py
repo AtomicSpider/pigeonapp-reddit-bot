@@ -3,6 +3,15 @@ import summarizer
 import os
 
 
+FOOTER = """
+
+-------------------------------------------------------------
+This is an automated bot created by u/pigeonapp
+Please reach out for any greviences/suggestions :)
+-------------------------------------------------------------
+"""
+
+
 def fetch_posts(reddit, subreddit_name):
     combined_text = ""
     subreddit = reddit.subreddit(subreddit_name)
@@ -34,7 +43,9 @@ def main():
         # Summarize the combined text file
         summary = summarizer.summarize(posts)
 
-        print(summary)
+        post_selftext = f"{summary}{FOOTER}"
+
+        print(post_selftext)
         # Post the summary to the subreddit
         # reddit.subreddit(subreddit_name).submit(
         #     title=f"Summary of top posts from the last 24 hours in {subreddit_name}",

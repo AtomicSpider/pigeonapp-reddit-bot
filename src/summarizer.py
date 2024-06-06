@@ -5,14 +5,25 @@ client = Anthropic(
     api_key=os.environ.get("ANTHROPIC_API_KEY"),
 )
 
+ASSISTANT_DIRECTIVE = """
+You are a Subreddit summary assistant. You will be provided with the top posts of a subreddit. Please create a summary of the collective posts and also append relevant post urls at the end.
+Your response should always be like this:
+
+Summary:
+<Summary in 2-3 paragraphs> 
+
+Refrences: 
+<Post URLs>
+"""
 
 def summarize(posts):
     message = client.messages.create(
         max_tokens=1024,
+        system=ASSISTANT_DIRECTIVE
         messages=[
             {
                 "role": "user",
-                "content": f"You are a Subreddit summary assistant. You will be provided with the top posts of subreddit. Please create a summary of the collective posts and also attach relevant post urls along with the summary at the end. Here are the top posts: \n\n {posts}. \n\n\n\n Your response should be like this: Daily Subreddit Summary: <Summary in 2-3 paragraphs> \n\n Links: <Post URLs>",
+                "content": posts,
             }
         ],
         model="claude-instant-1.2",
