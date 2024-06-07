@@ -68,6 +68,7 @@ def main():
         _post = reddit.subreddit(subreddit_name).submit(
             title=f"[Daily Digest] {get_yesterday_ist()}: Top Posts from {subreddit_name}",
             selftext=post_selftext,
+            flair_id="93e1e85a-3504-11ee-96a8-d29c75efeb66",
         )
 
         print(f"Submitted to {_post.permalink}")
