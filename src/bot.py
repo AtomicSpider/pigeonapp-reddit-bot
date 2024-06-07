@@ -65,7 +65,7 @@ def main():
         print(post_selftext)
 
         # Post the summary to the subreddit
-        _post = reddit.subreddit("test").submit(
+        _post = reddit.subreddit(subreddit_name).submit(
             title=f"[Daily Digest] {get_yesterday_ist()}: Top Posts from {subreddit_name}",
             selftext=post_selftext,
         )
